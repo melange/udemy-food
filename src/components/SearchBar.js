@@ -3,10 +3,18 @@ import { View, Text, StyleSheet } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { TextInput } from "react-native-gesture-handler";
 
-const SearchBar = () => {
+const SearchBar = ({term, onTermChange, onTermSubmit}) => {
     return <View style={styles.backgroundStyle}>
         <Feather name='search' style={styles.iconStyle}/>
-        <TextInput style={styles.inputStyle} placeholder="Search"/>
+        <TextInput 
+            autoCapitalize="none"
+            autoCorrect={false}
+            style={styles.inputStyle} 
+            placeholder="Search"
+            value={term}
+            onChangeText={newTerm => onTermChange(newTerm)}
+            onEndEditing={() => onTermSubmit()}
+        />
     </View>  
 };
 
